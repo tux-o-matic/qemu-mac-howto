@@ -16,3 +16,16 @@
 ```shell
 ~ % qemu-system-x86_64 -m 8G -smp 4 -cdrom Downloads/Fedora-Workstation-Live-x86_64-40-1.14.iso -drive file=data_disk.qcow2,if=virtio -vga virtio -display default,show-cursor=on -usb -device usb-tablet
 ```
+
+## Format Data Disk
+Once in the booted Live VM, inside a terminal:
+```shell
+lsblk
+```
+If you booted the Live VM with just one attached virtual disk, you should see a `/dev/vda`:
+```shell
+su
+mkfs.ext4 /dev/vda
+mkdir /mnt/data
+mount /dev/vda /mnt/data
+```
